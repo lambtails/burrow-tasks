@@ -1,33 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>Burrow tasks</title>
-    </head>
-    <body>
-        <h1>Burrow tasks</h1>
 
-		<hr>
+<head>
+    <title>Burrow tasks</title>
+    <style>
+        input[type=checkbox],
+        input[type=checkbox]+label {
+            cursor: pointer;
+        }
 
-		<form method="POST">
-			<input type="text" name="description" autocomplete="off" placeholder="Enter a task" required>
-			<input type = "submit" value = "submit"/>
-		</form>
-    
-		<hr>
+        input[type=checkbox]:checked+label {
+            text-decoration: line-through;
+            opacity: 50%;
+        }
 
-		<table>
-			<tr>
-			<th>description</th>
-			<th>done</th>
-			<th>archived</th>
-			</tr>
-			{% for task in data %}
-			<tr>
-				<td>{{task[0]}}</td>
-				<td>{{task[1]}}</td>
-				<td>{{task[2]}}</td>
-				</tr>
-			{% endfor %}
-		</table>
-	</body>
+        ul {
+            padding-left: 0;
+        }
+
+        li {
+            list-style-type: none;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Burrow tasks</h1>
+    <hr />
+    <form method="POST">
+        <input
+            type="text"
+            name="description"
+            autocomplete="off"
+            placeholder=""
+            required
+        />
+        <input
+            type="submit"
+            value="Add task"
+        />
+    </form>
+    <hr />
+    <ul> {% for task in data %} <li>
+            <input
+                type="checkbox"
+                id="task-{{task[0]}}"
+                autocomplete="off"
+                {% if task[2] %}checked{% endif %}
+            />
+            <label for="task-{{task[0]}}">{{task[1]}}</label>
+        </li> {% endfor %} </ul>
+</body>
+<script>
+    const updateTask = (id, done = false) => {
+        const url = "/update";
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                rowid: id,
+                done: done
+            }),
+        };
+        fetch(url, options)
+            .then((response) => response.text())
+            .catch((error) => console.error("Error:", error));
+    };
+
+    document.querySelectorAll("input[type=checkbox]").forEach((checkbox) => {
+        checkbox.addEventListener("input", (e) => {
+            const elem = e.target;
+            const rowid = parseInt(elem.id.split("-")[1]);
+            updateTask(rowid, done = elem.checked);
+        });
+    });
+</script>
+
 </html>
