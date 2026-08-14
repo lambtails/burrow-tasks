@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Burrow tasks</title>
+    </head>
+    <body>
+        <h1>Burrow tasks</h1>
+
+		<hr>
+
+		<form method="POST">
+			<input type="text" name="description" autocomplete="off" placeholder="Enter a task" required>
+			<input type = "submit" value = "submit"/>
+		</form>
+    
+		<hr>
+
+		<table>
+			<tr>
+			<th>description</th>
+			<th>done</th>
+			<th>archived</th>
+			</tr>
+			{% for task in data %}
+			<tr>
+				<td>{{task[0]}}</td>
+				<td>{{task[1]}}</td>
+				<td>{{task[2]}}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</body>
+</html>
