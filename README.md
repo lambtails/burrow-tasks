@@ -2,6 +2,8 @@
 
 To-do list tool built using Python, SQLite and Flask/Django. 
 
+<img width="263" height="242" alt="Screenshot of burrow tasks" src="https://github.com/user-attachments/assets/31c49ba5-6b3a-48f0-9495-e8660d1b7b8f" />
+
 ## Purpose
 
 Designed to be lightweight and simple for deployment to a small VPS, so I can access my tasks from all my devices over the internet. 
