@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import sqlite3
 import datetime
 
@@ -23,7 +23,7 @@ with sqlite3.connect(db, detect_types=detect_types) as connect:
         """)
 
 # Start flask app and define URL routes
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 
 @app.route("/", methods=["GET", "POST"])

@@ -1,0 +1,66 @@
+/*
+Colour scheme is loosely based on the landing UI from the Nostromo spacecraft in Alien!
+*/
+
+/* Define variables */
+* {
+	
+	--bg-color: #141e22;
+	--line-color: #1a3e49;
+	--text-color: #a4fbff;
+
+	--interactive-color: #318dad;
+	--checkbox-color: #3f9bbc;
+}
+
+/* Colours and fonts */
+html {
+	background: var(--bg-color);
+	font-family: Helvetica, sans-serif;
+}
+h1,
+p,
+li {
+	color: var(--text-color);
+}
+hr {
+	border-color: var(--line-color); /*#323a3e*/
+}
+
+/* List styles */
+ul {
+	padding-left: 0;
+}
+li {
+	list-style-type: none;
+	margin-bottom: 0.5rem;
+}
+
+/* Checkboxes */
+input[type="checkbox"],
+input[type="checkbox"]+label {
+	cursor: pointer;
+}
+input[type="checkbox"]:checked {
+	accent-color: var(--checkbox-color);
+}
+input[type="checkbox"]:checked+label {
+	text-decoration: line-through;
+	color: var(--interactive-color);
+	opacity: 60%;
+}
+
+/* Other input fields */
+input[type="submit"],
+input[type="text"] {
+	border: 1px solid var(--interactive-color);
+	border-radius: 4px;
+}
+
+input[type="submit"], input[type="button"] {
+	background-color: var(--interactive-color);
+}
+input[type="submit"]:active, input[type="button"]:active {
+	background-color: var(--text-color);
+}
+

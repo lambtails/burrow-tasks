@@ -7,53 +7,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, user-scalable=yes"
     >
-    <style>
-        html {
-            background: #141e22;
-            font-family: Helvetica, sans-serif;
-        }
-
-        h1,
-        p,
-        li {
-            color: #a4fbff;
-        }
-
-        input[type=checkbox],
-        input[type=checkbox]+label {
-            cursor: pointer;
-        }
-
-        input[type=checkbox]:checked+label {
-            text-decoration: line-through;
-            color: #318dad;
-            opacity: 60%;
-        }
-
-        input[type=checkbox]:checked {
-            accent-color: #3f9bbc;
-        }
-
-        input[type=submit],
-        input[type=text],
-        hr {
-            border: 1px solid #318dad;
-            border-radius: 4px;
-        }
-
-        hr {
-            border-color: #323a3e;
-        }
-
-        ul {
-            padding-left: 0;
-        }
-
-        li {
-            list-style-type: none;
-            margin-bottom: 0.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
