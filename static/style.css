@@ -9,7 +9,11 @@ Colour scheme is loosely based on the landing UI from the Nostromo spacecraft in
 	--text-color: #a4fbff;
 
 	--interactive-color: #318dad;
+	--interactive-color-2: #1d6881;
 	--checkbox-color: #3f9bbc;
+
+	--critical-color: #f44c27;
+	--critical-color-2: rgb(243, 129, 103);
 }
 
 /* Colours and fonts */
@@ -46,18 +50,27 @@ h1 {
 	text-align: center;
 }
 
-p, li, input {
+p,
+li,
+input {
 	font-size: 12pt !important;
 }
 
-.add-task-form {
+.add-task-form,
+.clean-up-form {
 	display: flex;
 	flex-flow: row nowrap;
 	gap: 0.5rem;
 	margin: 0 0.5rem;
 }
+
 .add-task-form input[type=text] {
 	flex-grow: 1;
+}
+
+.clean-up-form {
+	margin-bottom: 0.5rem;
+	justify-content: space-evenly;
 }
 
 /* List styles */
@@ -91,11 +104,12 @@ input[type="checkbox"]:checked+label {
 input[type="submit"],
 input[type="button"],
 input[type="text"] {
-	border: 1px solid var(--interactive-color);
+	border: 1px solid var(--interactive-color-2);
 	border-radius: 4px;
 }
 
 input[type="text"] {
+	cursor: text;
 	padding: 4px;
 	background-color: transparent;
 	color: var(--text-color);
@@ -103,6 +117,7 @@ input[type="text"] {
 
 input[type="submit"],
 input[type="button"] {
+	cursor: pointer;
 	font-weight: 600;
 	background-color: var(--interactive-color);
 }
@@ -112,14 +127,32 @@ input[type="button"]:active {
 	background-color: var(--text-color);
 }
 
+.button-critical:active {
+	background-color: var(--critical-color-2) !important;
+	border-color: var(--critical-color) !important;
+}
+
+input[type="button"]:disabled {
+	background-color: var(--line-color) !important;
+	color: #141e22 !important;
+}
+
 
 /* Mobile layouts */
 @media (max-width:800px) {
-	html, body {
+
+	html,
+	body {
 		width: 100%;
 		height: 100%;
 		margin: 0;
 		box-sizing: border-box;
 		overflow-x: hidden;
+	}
+
+	input[type="submit"],
+	input[type="button"],
+	input[type="text"] {
+		min-height: 2rem;
 	}
 }

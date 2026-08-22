@@ -19,6 +19,7 @@
     <form
         method="POST"
         class="add-task-form"
+        action="add"
     >
         <input
             type="text"
@@ -45,6 +46,23 @@
             />
             <label for="task-{{task[0]}}">{{task[1]}}</label>
         </li> {% endif %}{% endfor %} </ul>
+    <hr>
+    <form
+        method="POST"
+        class="clean-up-form"
+        action="clear"
+    >
+        <input
+            type="submit"
+            value="CLEAN UP"
+            class="button-critical"
+        >
+        <input
+            type="button"
+            value="UNDO"
+            disabled="disabled"
+        >
+    </form>
     <script src="{{ url_for('static', filename='burrow-tasks.js') }}"></script>
 </body>
 

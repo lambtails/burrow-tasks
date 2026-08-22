@@ -26,12 +26,3 @@ document.querySelectorAll("input[type=checkbox]").forEach((checkbox) => {
         updateTask(rowid, (done = elem.checked));
     });
 });
-
-/**
- * Other miscellaneous code
- */
-// This prevents the browser from asking to resend form data
-// It's a bit hacky but works perfectly fine for this project :)
-if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
-}
