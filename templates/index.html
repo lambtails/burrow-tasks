@@ -34,10 +34,7 @@
         />
     </form>
     <hr />
-    <ul class="sortable-list"> {% for task in data %} {% if task[3] == false %} <li
-            class="sortable-item"
-            draggable="true"
-        >
+    <ul> {% for task in data %} <li>
             <input
                 type="checkbox"
                 id="task-{{task[0]}}"
@@ -45,7 +42,9 @@
                 {% if task[2] %}checked{% endif %}
             />
             <label for="task-{{task[0]}}">{{task[1]}}</label>
-        </li> {% endif %}{% endfor %} </ul>
+        </li> {% endfor %}
+    {% if data|length == 0 %}<li id="no-tasks-found">No tasks found</li>{% endif %}
+    </ul>
     <hr>
     <form
         method="POST"
@@ -56,6 +55,7 @@
             type="submit"
             value="CLEAN UP"
             class="button-critical"
+            {% if data|length == 0 %}disabled="disabled"{% endif %}
         >
         <input
             type="button"

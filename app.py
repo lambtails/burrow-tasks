@@ -17,7 +17,7 @@ with sqlite3.connect(db, detect_types=detect_types) as connect:
         CreationDate TIMESTAMP,
         DoneDate TIMESTAMP,
         ArchiveDate TIMESTAMP
-        )
+        );
         """)
 
 # Start flask app and define URL routes
@@ -29,9 +29,12 @@ def index():
     # Connect and load database for GET request
     with sqlite3.connect(db, detect_types=detect_types) as connect:
         cursor = connect.cursor()
-        cursor.execute(
-            "SELECT * FROM Tasks ORDER BY Done ASC, DoneDate DESC, CreationDate ASC;"
-        )
+        cursor.execute("""
+            SELECT *
+            FROM Tasks
+            WHERE Archived=False
+            ORDER BY Done ASC, DoneDate DESC, CreationDate ASC;
+            """)
         data = cursor.fetchall()
         cursor.close()
 
@@ -51,8 +54,8 @@ def add():
             cursor = connect.cursor()
             cursor.execute(
                 """
-                INSERT INTO Tasks \
-                    (Description,Done,Archived,CreationDate) VALUES (?,?,?,?)
+                INSERT INTO Tasks (Description,Done,Archived,CreationDate) 
+                VALUES (?,?,?,?);
                 """,
                 (description, False, False, current_datetime),
             )
@@ -65,8 +68,22 @@ def add():
 
 @app.route("/clear", methods=["POST"])
 def clear():
-    # Archive completed tasks from the list
-    print("clear")
+    # Get datetime
+    archive_date = datetime.datetime.now()
+
+    # Archive completed tasks in the list
+    with sqlite3.connect(db, detect_types=detect_types) as connect:
+        cursor = connect.cursor()
+        cursor.execute(
+            """
+            UPDATE Tasks
+            SET Archived=?, ArchiveDate=?
+            WHERE Done=?;
+            """,
+            (True, archive_date, True),
+        )
+        connect.commit()
+        cursor.close()
 
     # Return to index page
     return app.redirect(app.url_for(endpoint="index"))
@@ -88,7 +105,7 @@ def update():
             """
             UPDATE Tasks
             SET Done=?, DoneDate=?
-            WHERE RowID=?
+            WHERE RowID=?;
             """,
             (done, done_date, row_id),
         )
