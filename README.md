@@ -2,7 +2,7 @@
 
 To-do list tool built using Python, SQLite and Flask/Django. 
 
-<img width="274" height="232" alt="screenshot of burrow tasks" src="https://github.com/user-attachments/assets/bc5532cc-97eb-44cc-a9c6-1890328bff36" />
+<img width="322" height="326" alt="Screenshot of burrow tasks" src="https://github.com/user-attachments/assets/d59fc0d5-c98f-42fa-923d-96b9ff8d6bfd" />
 
 ## Purpose
 
@@ -23,7 +23,7 @@ This project assumes you have a basic knowledge of python and git.
 2. Setup a python virtual environment `python -m venv .venv`
 3. Set your source to the virtual environment `source .venv/bin/activate`
 4. Install requirements `python -m pip install -r requirements.txt`
-5. Run `flask -A app.py run` to start the server and create an empty database
+5. Run `python app.py` to start the server (this will also initialize an empty database)
 
 By default, the application will be at http://127.0.0.1:5000
 
