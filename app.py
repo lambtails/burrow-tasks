@@ -111,9 +111,9 @@ def clear():
             """
             UPDATE Tasks
             SET Archived=?, ArchiveDate=?
-            WHERE Done=?;
+            WHERE Done=? AND List=?;
             """,
-            (True, current_datetime, True),
+            (True, current_datetime, True, list_name),
         )
         connect.commit()
         cursor.close()
