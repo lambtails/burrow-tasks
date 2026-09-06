@@ -14,8 +14,11 @@
 </head>
 
 <body>
-    <h1>BURROW TASKS</h1>
-    <hr />
+    <nav> {% for name in tabs %} <a
+            href="?l={{name}}"
+            {% if name == list_name %}class="selected"
+            {% endif %}
+        >{{name|upper}} {% for count in counts %}{% if count[0] == name %}({{count[1]}}){% endif %}{% endfor %}</a> {% endfor %} </nav>
     <form
         method="POST"
         class="add-task-form"
@@ -29,6 +32,13 @@
             required
         />
         <input
+            type="text"
+            name="list_name"
+            value="{{list_name}}"
+            hidden
+            readonly
+        />
+        <input
             type="submit"
             value="ADD TASK"
         />
@@ -39,12 +49,10 @@
                 type="checkbox"
                 id="task-{{task[0]}}"
                 autocomplete="off"
-                {% if task[2] %}checked{% endif %}
+                {% if task[3] %}checked{% endif %}
             />
             <label for="task-{{task[0]}}">{{task[1]}}</label>
-        </li> {% endfor %}
-    {% if data|length == 0 %}<li id="no-tasks-found">No tasks found</li>{% endif %}
-    </ul>
+        </li> {% endfor %} {% if data|length == 0 %}<li id="no-tasks-found">No tasks found</li>{% endif %} </ul>
     <hr>
     <form
         method="POST"
@@ -55,8 +63,16 @@
             type="submit"
             value="CLEAN UP"
             class="button-critical"
-            {% if data|length == 0 %}disabled="disabled"{% endif %}
+            {% if data|length == 0 %}disabled="disabled"
+            {% endif %}
         >
+        <input
+            type="text"
+            name="list_name"
+            value="{{list_name}}"
+            hidden
+            readonly
+        />
         <input
             type="button"
             value="UNDO"

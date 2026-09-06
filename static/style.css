@@ -10,6 +10,7 @@ Colour scheme is loosely based on the landing UI from the Nostromo spacecraft in
 
 	--interactive-color: #318dad;
 	--interactive-color-2: #1d6881;
+	--interactive-color-3: #0e4152;
 	--checkbox-color: #3f9bbc;
 
 	--critical-color: #f44c27;
@@ -98,6 +99,38 @@ li {
 	color: var(--interactive-color-2);
 }
 
+/* Navigation */
+nav {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.25rem;
+	padding: 0 0.25rem;
+	margin-bottom: 0.8rem;
+}
+
+nav a {
+	font-size: 80%;
+	text-decoration: none;
+	text-align: center;
+	padding-top: 0.5rem;
+	padding-bottom: 0.25rem;
+	border: 1px solid var(--interactive-color-2);
+	border-top: 0;
+	background-color: var(--interactive-color-3);
+	opacity: 0.5;
+	color: var(--interactive-color);
+	cursor: pointer;
+	font-weight: 600;
+	border-radius: 0 0 4px 4px;
+}
+
+nav .selected {
+	background-color: var(--interactive-color-3);
+	color: var(--text-color);
+	opacity: 1;
+	font-weight: 800;
+}
+
 /* Checkboxes */
 input[type="checkbox"],
 input[type="checkbox"]+label {
@@ -120,17 +153,20 @@ input[type="button"],
 input[type="text"] {
 	border: 1px solid var(--interactive-color-2);
 	border-radius: 4px;
+	height: 100%;
+	flex-grow: 1;
 }
 
 input[type="text"] {
 	cursor: text;
-	padding: 4px;
+	padding: 0.25rem;
 	background-color: transparent;
 	color: var(--text-color);
 }
 
 input[type="submit"],
 input[type="button"] {
+	padding: 0.25rem 0.5rem;
 	cursor: pointer;
 	font-weight: 600;
 	background-color: var(--interactive-color);
