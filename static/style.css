@@ -67,10 +67,6 @@ input {
 	margin: 0 0.5rem;
 }
 
-.add-task-form input[type=text] {
-	flex-grow: 1;
-}
-
 .clean-up-form {
 	margin-bottom: 0.5rem;
 	justify-content: space-evenly;
@@ -122,6 +118,7 @@ nav a {
 	cursor: pointer;
 	font-weight: 600;
 	border-radius: 0 0 4px 4px;
+	line-height: 2;
 }
 
 nav .selected {
@@ -159,9 +156,10 @@ input[type="text"] {
 
 input[type="text"] {
 	cursor: text;
-	padding: 0.25rem;
+	padding: 0 0.25rem;
 	background-color: transparent;
 	color: var(--text-color);
+	line-height: 2;
 }
 
 input[type="submit"],
@@ -170,6 +168,8 @@ input[type="button"] {
 	cursor: pointer;
 	font-weight: 600;
 	background-color: var(--interactive-color);
+	line-height: 2;
+	font-size: 80% !important;
 }
 
 input[type="submit"]:not(:disabled):active,
