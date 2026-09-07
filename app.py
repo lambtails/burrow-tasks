@@ -14,7 +14,7 @@ with sqlite3.connect(db, detect_types=detect_types) as connect:
         CREATE TABLE IF NOT EXISTS Tasks (
         RowID INTEGER NOT NULL PRIMARY KEY,
         Description TEXT NOT NULL,
-        Group TEXT NOT NULL,
+        GroupName TEXT NOT NULL,
         Done BOOL NOT NULL,
         Archived BOOL NOT NULL,
         CreationDate TIMESTAMP,
@@ -34,6 +34,7 @@ def index():
     group_name = request.args.get("l", default=groups[0], type=str)
     if group_name not in groups:
         group_name = groups[0]
+    group_name = str(group_name.lower())
 
     # Connect and load database for GET request
     with sqlite3.connect(db, detect_types=detect_types) as connect:
@@ -42,17 +43,17 @@ def index():
             """
             SELECT *
             FROM Tasks
-            WHERE Archived=False AND Group=?
+            WHERE Archived=False AND GroupName=?
             ORDER BY Done ASC, DoneDate DESC, CreationDate ASC;
             """,
             (group_name,),
         )
         data = cursor.fetchall()
         cursor.execute("""
-            SELECT Group, COUNT(*)
+            SELECT GroupName, COUNT(*)
             FROM Tasks
             WHERE Archived=False
-            GROUP BY Group;
+            GROUP BY GroupName;
             """)
         counts = cursor.fetchall()
         cursor.close()
@@ -80,7 +81,7 @@ def add():
             cursor = connect.cursor()
             cursor.execute(
                 """
-                INSERT INTO Tasks (Description,Group,Done,Archived,CreationDate) 
+                INSERT INTO Tasks (Description,GroupName,Done,Archived,CreationDate) 
                 VALUES (?,?,?,?,?);
                 """,
                 (description, group_name, False, False, current_datetime),
@@ -111,7 +112,7 @@ def clear():
             """
             UPDATE Tasks
             SET Archived=?, ArchiveDate=?
-            WHERE Done=? AND Group=?;
+            WHERE Done=? AND GroupName=?;
             """,
             (True, current_datetime, True, group_name),
         )
