@@ -43,7 +43,7 @@
             value="ADD TASK"
         />
     </form>
-    <hr />
+    <hr style="margin-bottom:0 !important;" />
     <ul> {% for task in data %} <li>
             <input
                 type="checkbox"
@@ -53,7 +53,7 @@
             />
             <label for="task-{{task[0]}}">{{task[1]}}</label>
         </li> {% endfor %} {% if data|length == 0 %}<li id="no-tasks-found">No tasks found</li>{% endif %} </ul>
-    <hr>
+    <hr style="margin-top:0 !important;" />
     <form
         method="POST"
         class="clean-up-form"
