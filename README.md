@@ -2,7 +2,7 @@
 
 To-do list tool built using Python, SQLite and Flask/Django. 
 
-<img width="322" height="326" alt="Screenshot of burrow tasks" src="https://github.com/user-attachments/assets/d59fc0d5-c98f-42fa-923d-96b9ff8d6bfd" />
+<img width="313" height="276" alt="Screenshot of burrow tasks" src="https://github.com/user-attachments/assets/d6f26f85-f14c-4659-b7c1-21656ad546c6" />
 
 ## Purpose
 
